@@ -49,6 +49,18 @@ function CreateTodoForm({ onSubmit }: CreateTodoFormProps) {
   )
 }
 
+type ValueViewerProps = {
+  value: any
+}
+
+function ValueViewer({ value }: ValueViewerProps) {
+  return (
+    <pre className="ValueViewer">
+      {JSON.stringify(value, undefined, 2)}
+    </pre>
+  )
+}
+
 function App() {
   const [showingDone, setShowingDone] = useState(false)
   const [keyword, setKeyword] = useState("")
@@ -99,6 +111,7 @@ function App() {
           reloadTodoItems()
         }}
       />
+      <ValueViewer value={todoItems} />
     </div>
   )
 }

@@ -47,6 +47,18 @@ function CreateTodoForm({ onSubmit }: CreateTodoFormProps) {
   )
 }
 
+type ValueViewerProps = {
+  value: any
+}
+
+function ValueViewer({ value }: ValueViewerProps) {
+  return (
+    <pre className="ValueViewer">
+      {JSON.stringify(value, undefined, 2)}
+    </pre>
+  )
+}
+
 const INITIAL_TODO: TodoItem[] = [
   { id: 1, text: 'todo-item-1', done: false },
   { id: 2, text: 'todo-item-2', done: true },
@@ -99,6 +111,7 @@ function App() {
         </div>
       )}
       <CreateTodoForm onSubmit={async text => { createItem(text) }} />
+      <ValueViewer value={{ keyword, showingDone, todoItems, filteredTodoItems }} />
     </div>
   )
 }

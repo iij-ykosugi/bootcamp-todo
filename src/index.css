@@ -80,10 +80,6 @@ label {
   gap: 12px;
 }
 
-.TodoItem > p {
-  flex-grow: 1;
-}
-
 .TodoItem {
   padding: 12px;
   display: flex;
@@ -95,8 +91,27 @@ label {
   background: #fff;
 }
 
+.TodoItem > p {
+  flex-grow: 1;
+}
+
 .CreateTodoForm {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.ValueViewer {
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.ValueViewer::before {
+  content: "ValueViewer";
+  display: block;
+  margin-bottom: 12px;
+  font-size: 80%;
+  font-weight: 700;
+  color: #999;
 }
