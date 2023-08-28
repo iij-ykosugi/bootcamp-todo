@@ -53,7 +53,7 @@ export class TodoApiMock {
     return new Promise(resolve => setTimeout(resolve, 500))
   }
 
-  /** ID用途に重複しなさそうな数値を適当に生成する。*/
+  /** ID用途に重複しなさそうな数値を適当に生成する。 */
   private generateId() {
     // モックなので適当に1970-01-01からの経過ミリ秒を利用した
     return Date.now()

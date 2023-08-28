@@ -1,20 +1,22 @@
 import { useState } from 'react'
 
-type TodoItem = {
+/** リスト表示の対象となる、個々のToDoを表す型。*/
+export type TodoItem = {
+  /** 表示や操作の対象を識別するために利用する、全ての`TodoItem`の中で一意な値。 */
   id: number
+  /** ToDoの内容となる文字列。 */
   text: string
+  /** 完了すると`true`となる。 */
   done: boolean
 }
 
-const newId = () => Date.now()
-
-type TodoItemProps = {
+type TodoListItemProps = {
   item: TodoItem
   onCheck: (checked: boolean) => void
-  onDelete: () => void
 }
 
-function TodoItem({ item, onCheck, onDelete }: TodoItemProps) {
+/** ToDoリストの個々のToDoとなるReactコンポーネント。 */
+function TodoListItem({ item, onCheck }: TodoListItemProps) {
   return (
     <div className="TodoItem">
       <input
@@ -23,7 +25,6 @@ function TodoItem({ item, onCheck, onDelete }: TodoItemProps) {
         onChange={ev => { onCheck(ev.currentTarget.checked) }}
       />
       <p style={{ textDecoration: item.done ? 'line-through' : 'none' }}>{item.text}</p>
-      <button className="button-small" onClick={() => onDelete()}>×</button>
     </div>
   )
 }
@@ -32,6 +33,7 @@ type CreateTodoFormProps = {
   onSubmit: (text: string) => void
 }
 
+/** 新しくToDoを追加するためのフォームとなるReactコンポーネント。 */
 function CreateTodoForm({ onSubmit }: CreateTodoFormProps) {
   const [text, setText] = useState("")
   return (
@@ -51,6 +53,7 @@ type ValueViewerProps = {
   value: any
 }
 
+/** `value`の内容を`JSON.stringify`して表示する、動作確認用コンポーネント。 */
 function ValueViewer({ value }: ValueViewerProps) {
   return (
     <pre className="ValueViewer">
@@ -59,29 +62,35 @@ function ValueViewer({ value }: ValueViewerProps) {
   )
 }
 
+/** ToDoリストの初期値。 */
 const INITIAL_TODO: TodoItem[] = [
   { id: 1, text: 'todo-item-1', done: false },
   { id: 2, text: 'todo-item-2', done: true },
 ]
 
+/** 
+ * ID用途に重複しなさそうな数値を適当に生成する。 
+ * 今回は適当にUnix Epoch(1970-01-01)からの経過ミリ秒を利用した。
+ */
+const generateId = () => Date.now()
+
+/** ToDoのStateとそれに対する操作をまとめたカスタムHook。 */
 const useTodoState = () => {
   const [todoItems, setTodoItems] = useState(INITIAL_TODO)
   const createItem = (text: string) => {
-    setTodoItems([...todoItems, { id: newId(), text, done: false }])
+    setTodoItems([...todoItems, { id: generateId(), text, done: false }])
   }
   const updateItem = (newItem: TodoItem) => {
     setTodoItems(todoItems.map(item => item.id === newItem.id ? newItem : item))
   }
-  const deleteItem = (id: number) => {
-    setTodoItems(todoItems.filter(item => item.id !== id))
-  }
-  return [todoItems, createItem, updateItem, deleteItem] as const
+  return [todoItems, createItem, updateItem] as const
 }
 
-function App() {
-  const [showingDone, setShowingDone] = useState(true)
+/** アプリケーション本体となるReactコンポーネント。 */
+export default function App() {
+  const [todoItems, createItem, updateItem] = useTodoState()
   const [keyword, setKeyword] = useState("")
-  const [todoItems, createItem, updateItem, deleteItem] = useTodoState()
+  const [showingDone, setShowingDone] = useState(true)
 
   const filteredTodoItems = todoItems.filter(item => {
     if (!showingDone && item.done) return false
@@ -101,11 +110,10 @@ function App() {
       ) : (
         <div className="App_todo-list">
           {filteredTodoItems.map((item, i) => (
-            <TodoItem
+            <TodoListItem
               key={item.id}
               item={item}
               onCheck={checked => { updateItem({ ...item, done: checked }) }}
-              onDelete={() => { deleteItem(item.id) }}
             />
           ))}
         </div>
@@ -115,5 +123,3 @@ function App() {
     </div>
   )
 }
-
-export default App

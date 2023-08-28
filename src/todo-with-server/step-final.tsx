@@ -61,7 +61,7 @@ function ValueViewer({ value }: ValueViewerProps) {
   )
 }
 
-function App() {
+export default function App() {
   const [showingDone, setShowingDone] = useState(false)
   const [keyword, setKeyword] = useState("")
   const [todoItems, setTodoItems] = useState<TodoItem[] | null>(null)
@@ -115,25 +115,3 @@ function App() {
     </div>
   )
 }
-
-export default App
-
-/*
-
-宿題:
-
-- todoのテキストを
-- 更新中の状態をユーザに伝えたい
-- 締切機能をつける
-- 作成時に入力欄をクリアしたい
-- 条件を変更した時に自動でリストを更新したい
-- apiを呼ぶ処理はTodoItemの方に寄せてもいい
-  - reloadする処理をどうするか？
-- エラーが出たらどうするか？
-- 削除処理の前に確認メッセージを入れる？
-  - ヒント: window.confirm を使うと割と簡単にできる
-  - ただしToDoアプリ程度だと邪魔かもしれない
-
-- これ以上複雑なことをしたいとなるとマルチページやモーダル・ダイアログが必要
-
- */

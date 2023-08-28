@@ -25,9 +25,11 @@ button {
   border: 1px solid #ccc;
   background: #eee;
 }
+
 button:hover {
   background: #ddd;
 }
+
 button:active {
   position: relative;
   top: 2px;
@@ -91,7 +93,7 @@ label {
   background: #fff;
 }
 
-.TodoItem > p {
+.TodoItem>p {
   flex-grow: 1;
 }
 
