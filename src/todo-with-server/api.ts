@@ -2,10 +2,8 @@
 export type TodoItem = {
   /** 全てのToDoで一意な値 */
   id: number
-
   /** ToDoの内容 */
   text: string
-
   /** 完了すると`true`となる。 */
   done: boolean
 }

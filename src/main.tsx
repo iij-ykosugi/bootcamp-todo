@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom/client'
+import App from './todo/step-final'
 import './index.css'
 
 const appPaths = [
@@ -47,5 +48,6 @@ const AppSelector = () => {
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AppSelector />
+    {/* <App /> */}
   </React.StrictMode>,
 )
