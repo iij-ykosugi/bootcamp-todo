@@ -1,11 +1,13 @@
 type HelloProps = {
-  yourName: string
-}
+  yourName: string;
+};
 
 function Hello({ yourName }: HelloProps) {
   return (
-    <p>Hello, <b>{yourName}!</b></p>
-  )
+    <p>
+      Hello, <b>{yourName}!</b>
+    </p>
+  );
 }
 
 export default function App() {
@@ -15,5 +17,5 @@ export default function App() {
       <Hello yourName="igarashi" />
       <Hello yourName="ueda" />
     </div>
-  )
+  );
 }

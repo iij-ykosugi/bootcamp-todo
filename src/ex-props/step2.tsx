@@ -1,7 +1,9 @@
 function Hello() {
   return (
-    <p>Hello, <b>React!</b></p>
-  )
+    <p>
+      Hello, <b>React!</b>
+    </p>
+  );
 }
 
 export default function App() {
@@ -9,5 +11,5 @@ export default function App() {
     <div className="App">
       <Hello />
     </div>
-  )
+  );
 }

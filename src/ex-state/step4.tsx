@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 type ListFilterProps = {
-  members: string[]
-}
+  members: string[];
+};
 
 function ListFilter({ members }: ListFilterProps) {
-  const [text, setText] = useState('')
-  const filteredMembers = members.filter((member) => member.includes(text))
+  const [text, setText] = useState("");
+  const filteredMembers = members.filter((member) => member.includes(text));
   return (
     <div>
       <input value={text} onChange={(event) => setText(event.target.value)} />
@@ -14,14 +14,14 @@ function ListFilter({ members }: ListFilterProps) {
         <p key={member}>{member}</p>
       ))}
     </div>
-  )
+  );
 }
 
 export default function App() {
   return (
     <div className="App">
-      <ListFilter members={['asa-taka', 'igarashi', 'ueda']} />
-      <ListFilter members={['endo', 'ogata', 'kataoka']} />
+      <ListFilter members={["asa-taka", "igarashi", "ueda"]} />
+      <ListFilter members={["endo", "ogata", "kataoka"]} />
     </div>
-  )
+  );
 }

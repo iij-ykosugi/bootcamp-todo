@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 function TextInput() {
-  const [text, setText] = useState('')
+  const [text, setText] = useState("");
   return (
     <div>
       <input value={text} onChange={(event) => setText(event.target.value)} />
       <p>input: {text}</p>
     </div>
-  )
+  );
 }
 
 export default function App() {
@@ -15,5 +15,5 @@ export default function App() {
     <div className="App">
       <TextInput />
     </div>
-  )
+  );
 }
