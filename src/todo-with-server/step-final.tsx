@@ -7,6 +7,7 @@ const INITIAL_TODO: TodoItem[] = [
   { id: 2, text: "todo-item-2", done: true },
 ];
 
+/** モックと実際のAPIクライアントを切り替えるためのコメントアウト */
 const todoApi = new TodoApiMock(INITIAL_TODO);
 // const todoApi = new TodoApiClient('http://localhost:8080')
 
@@ -22,9 +23,7 @@ function TodoListItem({ item, onCheck, onDelete }: TodoListItemProps) {
       <input
         type="checkbox"
         checked={item.done}
-        onChange={(ev) => {
-          onCheck(ev.currentTarget.checked);
-        }}
+        onChange={(ev) => onCheck(ev.currentTarget.checked)}
       />
       <p style={{ textDecoration: item.done ? "line-through" : "none" }}>
         {item.text}
@@ -48,17 +47,9 @@ function CreateTodoForm({ onSubmit }: CreateTodoFormProps) {
         placeholder="新しいTodo"
         size={60}
         value={text}
-        onChange={(ev) => {
-          setText(ev.currentTarget.value);
-        }}
+        onChange={(ev) => setText(ev.currentTarget.value)}
       />
-      <button
-        onClick={() => {
-          onSubmit(text);
-        }}
-      >
-        追加
-      </button>
+      <button onClick={() => onSubmit(text)}>追加</button>
     </div>
   );
 }

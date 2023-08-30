@@ -22,9 +22,7 @@ function TodoListItem({ item, onCheck }: TodoListItemProps) {
       <input
         type="checkbox"
         checked={item.done}
-        onChange={(ev) => {
-          onCheck(ev.currentTarget.checked);
-        }}
+        onChange={(ev) => onCheck(ev.currentTarget.checked)}
       />
       <p style={{ textDecoration: item.done ? "line-through" : "none" }}>
         {item.text}
@@ -79,7 +77,7 @@ export default function App() {
         <div className="dimmed">該当するToDoはありません</div>
       ) : (
         <div className="App_todo-list">
-          {filteredTodoItems.map((item, i) => (
+          {filteredTodoItems.map((item) => (
             <TodoListItem
               key={item.id}
               item={item}

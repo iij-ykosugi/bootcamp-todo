@@ -25,10 +25,7 @@ const appPaths = [
   "todo-with-server/step-final",
 ];
 
-const seq = (n: number) =>
-  Array(n)
-    .fill(0)
-    .map((_, i) => i);
+const seq = (n: number) => [...Array(n)].map((_, i) => i);
 
 /**
  * 動作確認のためAppを切り替えられるようにするもの。

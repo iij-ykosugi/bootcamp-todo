@@ -22,9 +22,7 @@ function TodoListItem({ item, onCheck }: TodoListItemProps) {
       <input
         type="checkbox"
         checked={item.done}
-        onChange={(ev) => {
-          onCheck(ev.currentTarget.checked);
-        }}
+        onChange={(ev) => onCheck(ev.currentTarget.checked)}
       />
       <p style={{ textDecoration: item.done ? "line-through" : "none" }}>
         {item.text}
@@ -46,17 +44,9 @@ function CreateTodoForm({ onSubmit }: CreateTodoFormProps) {
         placeholder="新しいTodo"
         size={60}
         value={text}
-        onChange={(ev) => {
-          setText(ev.currentTarget.value);
-        }}
+        onChange={(ev) => setText(ev.currentTarget.value)}
       />
-      <button
-        onClick={() => {
-          onSubmit(text);
-        }}
-      >
-        追加
-      </button>
+      <button onClick={() => onSubmit(text)}>追加</button>
     </div>
   );
 }
@@ -126,7 +116,7 @@ export default function App() {
         <div className="dimmed">該当するToDoはありません</div>
       ) : (
         <div className="App_todo-list">
-          {filteredTodoItems.map((item, i) => (
+          {filteredTodoItems.map((item) => (
             <TodoListItem
               key={item.id}
               item={item}
@@ -137,11 +127,7 @@ export default function App() {
           ))}
         </div>
       )}
-      <CreateTodoForm
-        onSubmit={async (text) => {
-          createItem(text);
-        }}
-      />
+      <CreateTodoForm onSubmit={(text) => createItem(text)} />
       <ValueViewer
         value={{ keyword, showingDone, todoItems, filteredTodoItems }}
       />
