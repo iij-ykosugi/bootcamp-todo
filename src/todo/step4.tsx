@@ -32,7 +32,7 @@ function TodoListItem({ item, onCheck }: TodoListItemProps) {
 }
 
 type ValueViewerProps = {
-  value: any;
+  value: unknown;
 };
 
 /** `value`の内容を`JSON.stringify`して表示する、動作確認用コンポーネント。 */
@@ -56,7 +56,7 @@ export default function App() {
 
   const updateItem = (newItem: TodoItem) => {
     setTodoItems(
-      todoItems.map((item) => (item.id === newItem.id ? newItem : item)),
+      todoItems.map((item) => (item.id === newItem.id ? newItem : item))
     );
   };
 

@@ -56,5 +56,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <AppSelector />
     {/* <App /> */}
-  </React.StrictMode>,
+  </React.StrictMode>
 );

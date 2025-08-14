@@ -56,7 +56,7 @@ function CreateTodoForm({ onSubmit }: CreateTodoFormProps) {
 }
 
 type ValueViewerProps = {
-  value: any;
+  value: unknown;
 };
 
 /** `value`の内容を`JSON.stringify`して表示する、動作確認用コンポーネント。 */
@@ -86,7 +86,7 @@ const useTodoState = () => {
   };
   const updateItem = (newItem: TodoItem) => {
     setTodoItems(
-      todoItems.map((item) => (item.id === newItem.id ? newItem : item)),
+      todoItems.map((item) => (item.id === newItem.id ? newItem : item))
     );
   };
   const deleteItem = (id: number) => {

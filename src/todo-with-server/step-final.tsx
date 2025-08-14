@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { TodoItem, TodoApiMock, TodoApiClient } from "./api";
+import { type TodoItem, TodoApiMock, TodoApiClient } from "./api";
 
 const INITIAL_TODO: TodoItem[] = [
   { id: 1, text: "todo-item-1", done: false },
@@ -55,7 +55,7 @@ function CreateTodoForm({ onSubmit }: CreateTodoFormProps) {
 }
 
 type ValueViewerProps = {
-  value: any;
+  value: unknown;
 };
 
 function ValueViewer({ value }: ValueViewerProps) {
@@ -75,6 +75,7 @@ export default function App() {
 
   useEffect(() => {
     reloadTodoItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -16,7 +16,11 @@ export type TodoItem = {
  * ネットワーク越しのリクエストを再現するため、各メソッドには遅延時間を設けている。
  */
 export class TodoApiMock {
-  constructor(private todoItems: TodoItem[]) {}
+  private todoItems: TodoItem[];
+
+  constructor(todoItems: TodoItem[]) {
+    this.todoItems = todoItems;
+  }
 
   /** 条件に該当するToDoを配列で返す。 */
   async queryItems(keyword: string, includeDone: boolean) {
@@ -39,7 +43,7 @@ export class TodoApiMock {
   async updateItem(newItem: TodoItem) {
     await this.simulateNetworkDelay();
     this.todoItems = this.todoItems.map((item) =>
-      item.id === newItem.id ? newItem : item,
+      item.id === newItem.id ? newItem : item
     );
   }
 
@@ -68,11 +72,15 @@ export class TodoApiMock {
  * というライブラリを使うとこれよりも楽に書け、特にJSONの扱いが便利になる。
  */
 export class TodoApiClient {
+  private baseUrl: string;
+
   /**
    * @example
    * new TodoApiClient('http://localhost:8080')
    */
-  constructor(private baseUrl: string) {}
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
 
   /** 条件に該当するToDoを配列で返す。 */
   async queryItems(keyword: string, includeDone: boolean) {
@@ -107,7 +115,7 @@ export class TodoApiClient {
   /** 既存のToDoを削除する。 */
   async deleteItem(id: number) {
     return fetch(`${this.baseUrl}/todo/${id}`, { method: "DELETE" }).then(
-      (res) => res.json(),
+      (res) => res.json()
     );
   }
 }

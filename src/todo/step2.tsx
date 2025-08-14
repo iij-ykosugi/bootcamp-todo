@@ -26,7 +26,7 @@ function TodoListItem({ item }: TodoListItemProps) {
 }
 
 type ValueViewerProps = {
-  value: any;
+  value: unknown;
 };
 
 /** `value`の内容を`JSON.stringify`して表示する、動作確認用コンポーネント。 */
